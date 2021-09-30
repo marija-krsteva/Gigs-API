@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// User routes
 Route::apiResource('users', UserController::class);
-Route::apiResource('companies', CompanyController::class);
-Route::apiResource('gigs', GigController::class);
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('companies', CompanyController::class);
+    Route::apiResource('gigs', GigController::class);
+    Route::get('filter-gigs',[GigController::class, 'filter'])->name('filter');
+});

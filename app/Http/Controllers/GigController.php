@@ -8,7 +8,6 @@ use App\Http\Resources\GigResourceCollection;
 use App\Models\Gig;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 class GigController extends Controller
 {

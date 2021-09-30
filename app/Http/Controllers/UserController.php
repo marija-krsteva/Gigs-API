@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        //
+        $this->middleware('auth:sanctum')->except(['store', 'login']);
     }
 
     /**
@@ -45,8 +45,10 @@ class UserController extends Controller
         $validated['password'] = bcrypt($validated['password']);
 
         $user = User::create($validated);
+        $token = $user->createToken('gigs_upshift')->plainTextToken;
 
         return (new UserResource($user))
+            ->additional(['token' => $token])
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
@@ -93,5 +95,37 @@ class UserController extends Controller
 
         return response(['message' => 'User deleted successfully!'])->setStatusCode(Response::HTTP_OK);
     }
+
+    /**
+     * Log in a user
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse|Response
+     */
+    public function login(Request $request)
+    {
+        $user_login = (new User())->login($request);
+
+        return (new UserResource($user_login['user']))
+            ->additional(['token' => $user_login['token']])
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+    /**
+     * Log out a user
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response([
+            'message' => 'User Logged out'
+        ])->setStatusCode(Response::HTTP_OK);
+    }
+
 
 }

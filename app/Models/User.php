@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Response;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -34,6 +33,26 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function login($request) {
+        $validate = $request->validate([
+            'email' => 'email|required|exists:users,email',
+            'password' => 'string|min:6|required',
+        ]);
+
+        // Check email
+        $user = User::where('email', $validate['email'])->first();
+
+        // Check password
+        if(!$user || !Hash::check($validate['password'], $user->password)) {
+            return response([
+                'message' => 'invalid credentials'
+            ])->setStatusCode(Response::HTTP_UNAUTHORIZED);
+        }
+
+        $token = $user->createToken($user->first_name . ' ' . $user->last_name)->plainTextToken;
+        return ['user' => $user, 'token' => $token];
+    }
+
     /**
      *
      * Get the companies that belong to a user
@@ -46,7 +65,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get all of the deployments for the project.
+     * Get all of the gigs for the user.
      */
     public function gigs()
     {

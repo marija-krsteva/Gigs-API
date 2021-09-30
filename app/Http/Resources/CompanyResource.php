@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Requests\CompanyRequest;
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CompanyResource extends JsonResource
