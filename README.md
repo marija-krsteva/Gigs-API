@@ -1,35 +1,4 @@
 <div id="quesPage_question" style="background-color: white; color: black; padding: 20px">
-  <h1><span >Intro</span></h1>
-  <p><span>Welcome to the Upshift Technical Challenge.</span></p>
-  <p><span>In this technical challenge, you will need to develop a RESTful API for “</span><strong >Gigs</strong><span >” platform.&nbsp;</span></p>
-  <p><br></p>
-  <h1><span >Requirements</span></h1>
-  <ol>
-    <li><span >Please use </span><strong >PHP framework Laravel</strong></li>
-    <li><span >Please use </span><strong >Relational database </strong><span >(by your choice)</span></li>
-    <li><span >Please push your code to a </span><strong >Git</strong><span > repository (more information follows)</span></li>
-    <li><span >Please push the Laravel framework alone (without your work) as the first</span><strong > initial commit</strong></li>
-    <li><span >Please provide instructions for starting the API</span></li>
-  </ol>
-  <p><br></p>
-  <h2>Repository</h2>
-  <p>Please create a <strong>private</strong> repository on <strong>GitLab</strong> named <strong>"[first_name]_[last_name]_upshift_technical_challenge"</strong> (example: <strong>tyler_omaha_technical_channelge</strong>) and allow developer access to the following users:</p>
-  <ul>
-    <li>Nikola Jordanovski (nick@upshiftwork.com),</li>
-    <li>Nikola Kalemdzievski (nikki@upshiftwork.com).</li>
-  </ul>
-  <p><br></p>
-  <h1><span >General Guidance</span></h1>
-  <p>Please focus on the following points:</p>
-  <ul>
-    <li>Clean code,</li>
-    <li>Response consistency,</li>
-    <li>Database queries efficiency.</li>
-  </ul>
-  <p><br></p>
-  <h1><span >Questions</span></h1>
-  <p>Feel free to contact Nikola for any questions at nikki@upshiftwork.com.</p>
-  <p><br></p>
   <h1><span >The Gigs API</span></h1>
   <h2><span >Description</span></h2>
   <p><span >This API is for a platform for listing gigs. </span></p>
